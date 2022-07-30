@@ -34,6 +34,7 @@ class PostViewSet(ModelViewSet):
 
 
 class GroupViewSet(ReadOnlyModelViewSet):
+    """Представление группы"""
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
