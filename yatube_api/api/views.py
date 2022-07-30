@@ -35,12 +35,14 @@ class PostViewSet(ModelViewSet):
 
 class GroupViewSet(ReadOnlyModelViewSet):
     """Представление группы"""
+    
     queryset = Group.objects.all()
     serializer_class = GroupSerializer
 
 
 class FollowViewSet(CreateModelMixin, ListModelMixin, GenericViewSet):
     """Представление подписки"""
+    
     serializer_class = FollowSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('user__username', 'following__username')
@@ -54,6 +56,8 @@ class FollowViewSet(CreateModelMixin, ListModelMixin, GenericViewSet):
 
 
 class CommentViewSet(ModelViewSet):
+    """Представление комментариев"""
+    
     serializer_class = CommentSerializer
     permission_classes = (
         permissions.IsAuthenticatedOrReadOnly,
