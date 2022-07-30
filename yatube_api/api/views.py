@@ -40,6 +40,7 @@ class GroupViewSet(ReadOnlyModelViewSet):
 
 
 class FollowViewSet(CreateModelMixin, ListModelMixin, GenericViewSet):
+    """Представление подписки"""
     serializer_class = FollowSerializer
     filter_backends = (filters.SearchFilter,)
     search_fields = ('user__username', 'following__username')
