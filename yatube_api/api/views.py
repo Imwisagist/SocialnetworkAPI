@@ -20,6 +20,8 @@ from posts.models import Post, Group
 
 
 class PostViewSet(ModelViewSet):
+    """Представление о пост"""
+    
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     permission_classes = (
