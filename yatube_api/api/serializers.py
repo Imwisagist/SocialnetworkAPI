@@ -16,6 +16,8 @@ class PostSerializer(serializers.ModelSerializer):
 
 
 class CommentSerializer(serializers.ModelSerializer):
+    """Сериалайзер для модели комментариев"""
+
     author = serializers.SlugRelatedField(
         read_only=True, slug_field='username'
     )
@@ -34,6 +36,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 class FollowSerializer(serializers.ModelSerializer):
     """Сериалайзер для модели подписок"""
+
     user = serializers.SlugRelatedField(
         queryset=User.objects.all(),
         slug_field='username',
