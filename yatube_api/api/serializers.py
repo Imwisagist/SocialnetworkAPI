@@ -33,6 +33,7 @@ class GroupSerializer(serializers.ModelSerializer):
 
 
 class FollowSerializer(serializers.ModelSerializer):
+    """Сериалайзер для модели подписок"""
     user = serializers.SlugRelatedField(
         queryset=User.objects.all(),
         slug_field='username',
