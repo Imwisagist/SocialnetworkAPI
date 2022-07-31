@@ -8,6 +8,7 @@ User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """Сериалайзер модели пост"""
     author = SlugRelatedField(slug_field='username', read_only=True)
 
     class Meta:
