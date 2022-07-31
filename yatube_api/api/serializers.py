@@ -8,6 +8,7 @@ User = get_user_model()
 
 
 class PostSerializer(serializers.ModelSerializer):
+    """Сериалайзер для модели постов"""
     author = SlugRelatedField(slug_field='username', read_only=True)
 
     class Meta:
@@ -47,18 +48,16 @@ class FollowSerializer(serializers.ModelSerializer):
         slug_field='username'
     )
 
-    def validate_following(self, data):
-        user = self.context['request'].user
-        if user == data and self.context['request'].method == 'POST':
-            raise serializers.ValidationError(
-                'Нельзя подписаться на самого себя'
-            )
-        if Follow.objects.filter(
-                user=user, following=data
-        ).exists():
-            raise serializers.ValidationError('Данная подписка уже существует')
-        return data
-
     class Meta:
         fields = ('user', 'following')
         model = Follow
+
+    def validate_following(self, data):
+        user = self.context['request'].user
+        if user == data:
+            raise serializers.ValidationError(
+                'Нельзя подписаться на самого себя'
+            )
+        if data.following.filter(user=user).exists():
+            raise serializers.ValidationError('Данная подписка уже существует')
+        return data
