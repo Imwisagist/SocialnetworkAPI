@@ -1,4 +1,4 @@
-# YatubeAPI
+# API for socialnetwork
 ## _Социальная сеть блогеров_
 
 ## Возможности
